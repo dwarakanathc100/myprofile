@@ -11,7 +11,7 @@ export function Personal() {
           <span className="text-cyan">.</span>
         </h2>
         <p className="mt-4 max-w-2xl text-white/60">
-          Things I build for my own life and for the next company — shipping now, and on the bench.
+          Things I build for my own life and for the next company - shipping now, and on the bench.
         </p>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-3">

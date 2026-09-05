@@ -11,7 +11,7 @@ export function Featured() {
           <span className="text-cyan"> the scroll.</span>
         </h2>
         <p className="mt-4 max-w-2xl text-white/60">
-          Three production AI platforms — agentic systems, RAG, machine learning, and Vertex AI —
+          Three production AI platforms - agentic systems, RAG, machine learning, and Vertex AI -
           for document intelligence, prospect ranking, and autonomous cash allocation.
         </p>
 
@@ -34,7 +34,7 @@ export function Featured() {
                 <div className="relative min-h-[280px] overflow-hidden lg:min-h-[420px]">
                   <img
                     src={project.image}
-                    alt={`${project.title} — ${project.eyebrow}`}
+                    alt={`${project.title} - ${project.eyebrow}`}
                     className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-transparent to-transparent" />

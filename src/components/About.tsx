@@ -13,14 +13,14 @@ export function About() {
           <p className="mt-6 text-lg leading-relaxed text-white/70">{profile.summary}</p>
           <p className="mt-5 leading-relaxed text-white/55">
             Comfortable in distributed, cross-time-zone teams. I contribute to architecture, code
-            quality, and delivery — then I keep going until the system is observable, cheaper, and
+            quality, and delivery - then I keep going until the system is observable, cheaper, and
             harder to break.
           </p>
         </div>
         <div className="grid gap-4">
           {[
-            ["Now", "Agentic AI, RAG, and ML on GCP Vertex AI — sales, documents, cash."],
-            ["Before", "Loyalty, campaign scheduling, payments — Go and Java at scale."],
+            ["Now", "Agentic AI, RAG, and ML on GCP Vertex AI - sales, documents, cash."],
+            ["Before", "Loyalty, campaign scheduling, payments - Go and Java at scale."],
             ["Mode", "Event-driven. Clean architecture. Reviews that raise the floor."],
             ["Based", `${profile.location} · ${profile.email}`],
           ].map(([k, v]) => (

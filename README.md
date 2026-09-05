@@ -1,4 +1,4 @@
-# Dwarakanath C — Profile
+# Dwarakanath C - Profile
 
 Cinematic portfolio for an AI Engineer and GCP Cloud Developer.
 

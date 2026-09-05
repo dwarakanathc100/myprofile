@@ -38,7 +38,7 @@ export function Hero() {
             transition={{ delay: 0.28 }}
             className="mt-6 max-w-xl text-white/65"
           >
-            I design systems that think — agentic AI, RAG, machine learning on Vertex AI, and
+            I design systems that think - agentic AI, RAG, machine learning on Vertex AI, and
             high-throughput backends for regulated industries.
           </motion.p>
           <motion.div

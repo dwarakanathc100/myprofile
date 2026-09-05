@@ -27,7 +27,7 @@ export function Experience() {
               </div>
               <ul className="mt-6 space-y-2 text-sm leading-relaxed text-white/70">
                 {job.points.map((p) => (
-                  <li key={p}>— {p}</li>
+                  <li key={p}>- {p}</li>
                 ))}
               </ul>
               <p className="mt-6 font-mono text-[11px] uppercase tracking-wider text-gold/80">
