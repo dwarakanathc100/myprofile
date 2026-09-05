@@ -1,6 +1,3 @@
-const leftModels = ["Gemini", "Gemma", "Vertex AI", "Document AI", "vLLM", "Agent Engine"];
-const rightModels = ["Claude", "GPT-4o", "Llama 3", "Mistral", "Groq", "RAG"];
-
 const leftStars = [
   [12, 8],
   [38, 14],
@@ -31,18 +28,30 @@ const rightStars = [
   [58, 92],
 ];
 
+const leftPlanets = [
+  { name: "Google", skin: "teal", size: 150, duration: "28s" },
+  { name: "Hugging Face", skin: "gold", size: 108, duration: "19s" },
+  { name: "Groq", skin: "blue", size: 72, duration: "13s" },
+];
+
+const rightPlanets = [
+  { name: "ChatGPT", skin: "gold", size: 150, duration: "26s" },
+  { name: "Anthropic", skin: "ice", size: 108, duration: "18s" },
+  { name: "Mistral", skin: "teal", size: 72, duration: "12s" },
+];
+
 function Rail({
   side,
-  models,
   stars,
+  planets,
 }: {
   side: "left" | "right";
-  models: string[];
   stars: number[][];
+  planets: typeof leftPlanets;
 }) {
   return (
     <div
-      className={`pointer-events-none fixed top-0 z-[1] hidden h-screen w-[min(13vw,200px)] overflow-hidden xl:block ${
+      className={`pointer-events-none fixed top-0 z-[1] hidden h-screen w-[min(15vw,220px)] overflow-hidden xl:block ${
         side === "left" ? "left-0" : "right-0"
       }`}
     >
@@ -60,18 +69,23 @@ function Rail({
         />
       ))}
 
-      <div className={`planet ${side === "left" ? "planet-teal" : "planet-gold"}`} />
-      <div className={`planet planet-sm ${side === "left" ? "planet-blue" : "planet-ice"}`} />
-
-      <div className="model-column">
-        {models.map((name, i) => (
-          <span
-            key={name}
-            className="model-chip"
-            style={{ animationDelay: `${i * 4.2}s` }}
+      <div className="orbit-stage">
+        {planets.map((planet) => (
+          <div
+            key={planet.name}
+            className="orbit"
+            style={{
+              width: planet.size,
+              height: planet.size,
+              animationDuration: planet.duration,
+            }}
           >
-            {name}
-          </span>
+            <div className="orbit-item" style={{ animationDuration: planet.duration }}>
+              <div className={`world world-${planet.skin}`}>
+                <span>{planet.name}</span>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </div>
@@ -81,8 +95,8 @@ function Rail({
 export function SideUniverse() {
   return (
     <>
-      <Rail side="left" models={leftModels} stars={leftStars} />
-      <Rail side="right" models={rightModels} stars={rightStars} />
+      <Rail side="left" stars={leftStars} planets={leftPlanets} />
+      <Rail side="right" stars={rightStars} planets={rightPlanets} />
     </>
   );
 }
