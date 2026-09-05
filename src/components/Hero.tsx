@@ -19,10 +19,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="font-display text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl"
+            className="whitespace-nowrap font-display text-[1.7rem] font-extrabold leading-none tracking-tight sm:text-4xl lg:text-[2.6rem]"
           >
-            {profile.name}
-            <span className="text-cyan">.</span>
+            Dwarakanath&nbsp;C<span className="text-cyan">.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

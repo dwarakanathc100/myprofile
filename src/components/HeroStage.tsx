@@ -58,14 +58,13 @@ function AgentGraph() {
 
 export function HeroStage() {
   return (
-    <div className="relative z-10 h-[380px] w-full cursor-grab overflow-hidden rounded-[2rem] border border-white/10 active:cursor-grabbing md:h-[560px]">
-      <img
-        src="./bg-neural-galaxy.png"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-80"
-      />
-      <div className="absolute inset-0 bg-[#05070d]/25" />
-      <Canvas camera={{ position: [0, 0.2, 5.2], fov: 42 }} dpr={[1, 1.75]}>
+    <div className="relative z-10 h-[340px] w-full cursor-grab overflow-hidden rounded-[2rem] border border-white/10 bg-[#0a101c] active:cursor-grabbing md:h-[480px]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(62,224,200,0.12),transparent_58%)]" />
+      <Canvas
+        camera={{ position: [0, 0.2, 5.2], fov: 42 }}
+        dpr={[1, 1.75]}
+        gl={{ alpha: true, antialias: true }}
+      >
         <ambientLight intensity={0.45} />
         <pointLight position={[3, 4, 4]} intensity={22} color="#3ee0c8" />
         <pointLight position={[-3, 1, 3]} intensity={16} color="#6ea8ff" />
