@@ -7,12 +7,14 @@ import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
 import { Personal } from "./components/Personal";
 import { Scene } from "./components/Scene";
+import { SideUniverse } from "./components/SideUniverse";
 import { Skills } from "./components/Skills";
 
 export default function App() {
   return (
     <div className="relative min-h-screen">
       <Scene />
+      <SideUniverse />
       <div className="grain" />
       <Nav />
       <main className="relative">
