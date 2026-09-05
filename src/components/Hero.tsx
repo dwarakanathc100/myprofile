@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { profile, stats } from "../data/profile";
+import { aiStack, profile, stats } from "../data/profile";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { HeroStage } from "./HeroStage";
 
@@ -39,9 +39,24 @@ export function Hero() {
             transition={{ delay: 0.28 }}
             className="mt-6 max-w-xl text-white/65"
           >
-            I design systems that think — multi-agent platforms, serverless intelligence, and
+            I design systems that think — agentic AI, RAG, machine learning on Vertex AI, and
             high-throughput backends for regulated industries.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mt-6 flex flex-wrap gap-2"
+          >
+            {aiStack.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-cyan/25 bg-cyan/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-cyan"
+              >
+                {item}
+              </span>
+            ))}
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}

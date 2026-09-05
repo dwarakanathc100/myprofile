@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { featured } from "../data/profile";
-import { ProjectOrb } from "./ProjectOrb";
 
 export function Featured() {
   return (
@@ -12,8 +11,8 @@ export function Featured() {
           <span className="text-cyan"> the scroll.</span>
         </h2>
         <p className="mt-4 max-w-2xl text-white/60">
-          Three production AI platforms I engineered as an AI / GCP engineer — document
-          intelligence, multi-agent prospect ranking, and autonomous cash allocation.
+          Three production AI platforms — agentic systems, RAG, machine learning, and Vertex AI —
+          for document intelligence, prospect ranking, and autonomous cash allocation.
         </p>
 
         <div className="mt-16 space-y-10">
@@ -28,17 +27,23 @@ export function Featured() {
               className="glass overflow-hidden rounded-[2rem] shadow-card"
             >
               <div
-                className={`grid lg:grid-cols-[0.9fr_1.3fr] ${
+                className={`grid lg:grid-cols-[1fr_1.15fr] ${
                   i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                <div
-                  className="relative min-h-[240px]"
-                  style={{
-                    background: `radial-gradient(circle at 50% 40%, ${project.accent}22, transparent 60%)`,
-                  }}
-                >
-                  <ProjectOrb accent={project.accent} kind={project.id} />
+                <div className="relative min-h-[280px] overflow-hidden lg:min-h-[420px]">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} — ${project.eyebrow}`}
+                    className="absolute inset-0 h-full w-full object-cover transition duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070d] via-transparent to-transparent" />
+                  <p
+                    className="absolute bottom-5 left-5 font-mono text-[11px] uppercase tracking-[0.22em]"
+                    style={{ color: project.accent }}
+                  >
+                    {project.eyebrow}
+                  </p>
                 </div>
                 <div className="p-8 md:p-12">
                   <div className="flex items-center justify-between gap-4">
