@@ -74,6 +74,14 @@ export function Hero() {
             >
               Personal projects
             </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition hover:border-gold hover:text-gold"
+            >
+              LinkedIn
+            </a>
           </motion.div>
         </div>
         <ErrorBoundary fallback={<div className="h-[380px] rounded-3xl bg-panel" />}>

@@ -27,6 +27,14 @@ export function Contact() {
             {profile.phone}
           </a>
           <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80"
+          >
+            LinkedIn
+          </a>
+          <a
             href={profile.resumeHref}
             download
             className="rounded-full border border-gold/40 px-6 py-3 text-sm text-gold"

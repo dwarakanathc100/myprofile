@@ -22,13 +22,23 @@ export function Nav() {
             </a>
           ))}
         </nav>
-        <a
-          href={profile.resumeHref}
-          download
-          className="rounded-full border border-cyan/40 bg-cyan/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-cyan transition hover:bg-cyan hover:text-ink"
-        >
-          Resume
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-white/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-white/70 transition hover:border-cyan hover:text-cyan"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={profile.resumeHref}
+            download
+            className="rounded-full border border-cyan/40 bg-cyan/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-cyan transition hover:bg-cyan hover:text-ink"
+          >
+            Resume
+          </a>
+        </div>
       </div>
     </header>
   );

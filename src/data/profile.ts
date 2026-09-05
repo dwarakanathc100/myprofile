@@ -5,6 +5,7 @@ export const profile = {
   location: "London, UK",
   phone: "+44 7979851621",
   email: "dwarakanathc45@gmail.com",
+  linkedin: "https://www.linkedin.com/in/dwarakanathc/",
   resumeHref: "./Resume_Dwarakanath_Cloud_developer.docx",
   summary:
     "Senior Backend Software Engineer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering — including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. Now extending that foundation into Google Cloud and applied AI: agentic multi-agent systems, RAG pipelines, machine learning on Vertex AI, Document AI, serverless data planes, BigQuery analytics, and LLM-powered automation.",
