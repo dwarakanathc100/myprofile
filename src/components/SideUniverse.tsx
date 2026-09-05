@@ -28,6 +28,9 @@ const rightStars = [
   [58, 92],
 ];
 
+const leftModels = ["Gemini", "Gemma", "Vertex AI", "Document AI", "vLLM", "Agent Engine"];
+const rightModels = ["Claude", "GPT-4o", "Llama 3", "Mistral", "Groq", "RAG"];
+
 const leftPlanets = [
   { name: "Google", skin: "teal", size: 150, duration: "28s" },
   { name: "Hugging Face", skin: "gold", size: 108, duration: "19s" },
@@ -44,10 +47,12 @@ function Rail({
   side,
   stars,
   planets,
+  models,
 }: {
   side: "left" | "right";
   stars: number[][];
   planets: typeof leftPlanets;
+  models: string[];
 }) {
   return (
     <div
@@ -68,6 +73,14 @@ function Rail({
           }}
         />
       ))}
+
+      <div className="model-column">
+        {models.map((name, i) => (
+          <span key={name} className="model-chip" style={{ animationDelay: `${i * 4.2}s` }}>
+            {name}
+          </span>
+        ))}
+      </div>
 
       <div className="orbit-stage">
         {planets.map((planet) => (
@@ -95,8 +108,8 @@ function Rail({
 export function SideUniverse() {
   return (
     <>
-      <Rail side="left" stars={leftStars} planets={leftPlanets} />
-      <Rail side="right" stars={rightStars} planets={rightPlanets} />
+      <Rail side="left" stars={leftStars} planets={leftPlanets} models={leftModels} />
+      <Rail side="right" stars={rightStars} planets={rightPlanets} models={rightModels} />
     </>
   );
 }
