@@ -61,7 +61,7 @@ export function Contact() {
             </a>
             <a
               href={profile.resumeHref}
-              download="Dwarakanath_Cloud_AI_Resume.docx"
+              download="Dwarakanath_Cloud_AI_Resume.pdf"
               className="rounded-full border border-gold/40 px-6 py-3 text-sm text-gold"
             >
               Download resume

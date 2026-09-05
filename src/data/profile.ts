@@ -6,7 +6,7 @@ export const profile = {
   phone: "+44 7979851621",
   email: "dwarakanathc45@gmail.com",
   linkedin: "https://www.linkedin.com/in/dwarakanathc/",
-  resumeHref: "./Dwarakanath_Cloud_AI_Resume_Updated.docx",
+  resumeHref: "./Dwarakanath_Cloud_AI_Resume.pdf",
   website: "https://www.cgdwarakanath.com",
   summary:
     "Senior Backend Software Engineer and GCP Cloud Developer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering, including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. I currently design production AI platforms on GCP using Vertex AI, Gemini, Agent Engine, Document AI, RAG, BigQuery, Cloud Run, Pub/Sub, and Terraform across document intelligence, sales prioritisation, and cash allocation.",

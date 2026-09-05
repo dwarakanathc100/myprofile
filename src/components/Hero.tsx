@@ -19,7 +19,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="whitespace-nowrap font-display text-[1.7rem] font-extrabold leading-none tracking-tight sm:text-4xl lg:text-[2.6rem]"
+            className="font-display text-[clamp(1.45rem,7vw,2.6rem)] font-extrabold leading-none tracking-tight"
           >
             Dwarakanath&nbsp;C<span className="text-cyan">.</span>
           </motion.h1>
