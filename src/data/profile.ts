@@ -6,9 +6,10 @@ export const profile = {
   phone: "+44 7979851621",
   email: "dwarakanathc45@gmail.com",
   linkedin: "https://www.linkedin.com/in/dwarakanathc/",
-  resumeHref: "./Resume_Dwarakanath_Cloud_developer.docx",
+  resumeHref: "./Dwarakanath_Cloud_AI_Resume_Updated.docx",
+  website: "https://www.cgdwarakanath.com",
   summary:
-    "Senior Backend Software Engineer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering - including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. Now extending that foundation into Google Cloud and applied AI: agentic multi-agent systems, RAG pipelines, machine learning on Vertex AI, Document AI, serverless data planes, BigQuery analytics, and LLM-powered automation.",
+    "Senior Backend Software Engineer and GCP Cloud Developer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering, including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. I currently design production AI platforms on GCP using Vertex AI, Gemini, Agent Engine, Document AI, RAG, BigQuery, Cloud Run, Pub/Sub, and Terraform across document intelligence, sales prioritisation, and cash allocation.",
 };
 
 export const aiStack = [
@@ -137,16 +138,16 @@ export const experience = [
     role: "GCP Cloud Developer & AI Engineer",
     dates: "03/2026 - present",
     team: "Team of 8",
-    project: "EU Prospect Prioritisation & Cloud/AI Platform Engineering",
+    project: "Cloud & AI Platform Engineering",
     points: [
-      "Design cloud-native data engineering and AI automation on GCP for sales, operations, and BI across UK and EU markets.",
-      "Delivered the EU Prospect Prioritisation pipeline in BigQuery SQL with a three-CTE structure (employee, occupation, prospect).",
-      "Built three Vertex AI Agent Engine agents: Value Estimation, Data Retrieval, and Prioritisation - agentic AI with RAG and ML scoring.",
-      "Designed an end-to-end document automation pipeline: Drive webhooks, API Gateway, Cloud Run, Pub/Sub, Document AI, BigQuery, QlikCloud.",
-      "Led a PoC of a self-hosted Gemma LLM on Cloud Run GPU with vLLM as a cost-efficient alternative to third-party APIs.",
-      "Ran structured data-quality assessments on financial KPI datasets and BigQuery tables.",
+      "Consumables: event-driven document intelligence from safety PDFs using Drive webhooks, API Gateway, Cloud Run, Pub/Sub, Document AI, BigQuery, and QlikCloud.",
+      "Consumables reliability: split webhook ingestion from AI workers, RAG over BigQuery entities, and layered dead-letter recovery.",
+      "EU Prospect Prioritisation: three-CTE BigQuery model so ranking includes only leads assigned through employee lead codes.",
+      "Multi-agent sales intelligence: Vertex AI Agent Engine for retrieval/RAG, ML value estimation, and prioritisation with Gemini and Google ADK.",
+      "AI Cash Allocation: Gemini classification of inbound credit-control mail plus RAG matching of remittances to invoices.",
+      "Led a self-hosted Gemma PoC on Cloud Run GPU with vLLM, plus Terraform, autoscaling, and data-quality reviews.",
     ],
-    tech: "Agentic AI · RAG · Machine Learning · GCP Vertex AI · Gemini · Document AI · Agent Engine · BigQuery · Cloud Run · Pub/Sub · Terraform · Python",
+    tech: "GCP · Vertex AI · Agent Engine · Gemini · Document AI · RAG · Google ADK · BigQuery · Cloud Run · Pub/Sub · Terraform · Python · vLLM · Gemma",
   },
   {
     company: "Amex",
