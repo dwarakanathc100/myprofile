@@ -7,6 +7,7 @@ import { Experience } from "./components/Experience";
 import { Featured } from "./components/Featured";
 import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
+import { Personal } from "./components/Personal";
 import { Skills } from "./components/Skills";
 
 const Scene = lazy(() => import("./components/Scene").then((m) => ({ default: m.Scene })));
@@ -25,6 +26,7 @@ export default function App() {
         <Hero />
         <About />
         <Featured />
+        <Personal />
         <Experience />
         <Skills />
         <Awards />

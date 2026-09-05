@@ -19,7 +19,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
-            className="font-display text-5xl font-extrabold leading-[0.92] tracking-tight sm:text-6xl lg:text-7xl"
+            className="font-display text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-4xl lg:text-5xl"
           >
             {profile.name}
             <span className="text-cyan">.</span>
@@ -70,10 +70,10 @@ export function Hero() {
               Enter the work
             </a>
             <a
-              href="#contact"
-              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition hover:border-gold hover:text-gold"
+              href="#personal"
+              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition hover:border-cyan hover:text-cyan"
             >
-              Start a conversation
+              Personal projects
             </a>
           </motion.div>
         </div>

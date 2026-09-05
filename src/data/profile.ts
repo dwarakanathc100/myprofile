@@ -300,6 +300,61 @@ export const education = [
   },
 ];
 
+export const personalProjects = [
+  {
+    id: "lifehub",
+    title: "LifeHub",
+    status: "In progress",
+    image: "./projects/lifehub.png",
+    summary:
+      "A personal life-operating system — todos, meetings, and notes in one place, with Gemini classifying what matters first.",
+    story:
+      "Todos are already end-to-end: FastAPI + Postgres, Gemini priority classification, a Next.js web app, and an Expo mobile client. Meetings (Google Calendar + notes) and real Google OAuth are next.",
+    stack: ["Next.js", "Expo", "FastAPI", "Postgres", "Gemini", "Python", "TypeScript"],
+  },
+  {
+    id: "mathsapp",
+    title: "Maths App",
+    status: "Shipped (v1)",
+    image: "./projects/mathsapp.png",
+    summary:
+      "A Grade 1 Android learning app — place value, expanded form, ordinals, addition and subtraction — with Learn and Practice in every lesson.",
+    story:
+      "Built in Kotlin and Jetpack Compose. Each lesson explains the idea, then scores interactive exercises with instant green/red feedback. Next: remaining Grade 1 modules, persisted scores, and richer exercise types.",
+    stack: ["Kotlin", "Jetpack Compose", "Material 3", "Android"],
+  },
+  {
+    id: "aipulse",
+    title: "The AI Pulse",
+    status: "Shipping daily",
+    image: "./bg-neural-galaxy.png",
+    summary:
+      "A personal daily brief for an AI engineer who intends to be a CEO — Groq filters the firehose, then a designed Word note lands in Gmail.",
+    story:
+      "Not a company newsletter. Models, agents, inference, capital, and regulation — scored for builder and CEO relevance, then written as one thesis, one action, and one deep cut.",
+    stack: ["Python", "Groq", "OpenRouter", "Gmail", "LLMs"],
+  },
+];
+
+export const futureApps = [
+  {
+    title: "LifeHub Meetings",
+    note: "Google Calendar, meeting notes, and Google OAuth — the next LifeHub tab after Todos.",
+  },
+  {
+    title: "Maths App — Grade 2+",
+    note: "Remaining Grade 1 modules, saved scores, matching and drag-and-drop, then later grades.",
+  },
+  {
+    title: "Family OS",
+    note: "Shared calendar, chores, and a quiet AI assistant for the household — LifeHub grown into a family product.",
+  },
+  {
+    title: "Personal CFO",
+    note: "A private money graph: cashflow, goals, and an agent that explains the week without a bank-app maze.",
+  },
+];
+
 export const awards = [
   "Best Performer of the Month — SmartLoyal",
   "AWS Certified Developer Associate — Dec 2023",

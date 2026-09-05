@@ -2,6 +2,7 @@ import { profile } from "../data/profile";
 
 const links = [
   ["Work", "#work"],
+  ["Personal", "#personal"],
   ["Experience", "#experience"],
   ["Stack", "#stack"],
   ["Contact", "#contact"],
@@ -14,7 +15,7 @@ export function Nav() {
         <a href="#top" className="font-display text-lg font-bold tracking-tight">
           DC<span className="text-cyan">.</span>
         </a>
-        <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
+        <nav className="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-xs text-white/70 sm:text-sm md:gap-8">
           {links.map(([label, href]) => (
             <a key={href} href={href} className="transition hover:text-cyan">
               {label}
