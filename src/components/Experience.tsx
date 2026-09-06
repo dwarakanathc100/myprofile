@@ -1,15 +1,10 @@
-import { earlier, experience } from "../data/profile";
+import { earlier, experience, type ClientEngagement, type ExperienceJob } from "../data/profile";
 
-type ClientEngagement = {
-  name: string;
-  current?: boolean;
-  role: string;
-  dates: string;
-  team: string;
-  project: string;
-  points: string[];
-  tech: string;
-};
+function isEmployerJob(
+  job: ExperienceJob,
+): job is Extract<ExperienceJob, { clients: ClientEngagement[] }> {
+  return "clients" in job;
+}
 
 function Engagement({
   role,
@@ -75,49 +70,45 @@ export function Experience() {
           A decade in production.
         </h2>
         <div className="mt-14 space-y-6">
-          {experience.map((job) => {
-            const clients = "clients" in job ? (job.clients as ClientEngagement[]) : undefined;
-
-            return (
-              <article key={job.company + job.dates} className="glass rounded-3xl p-7 md:p-10">
-                <h3 className="font-display text-2xl font-bold">
-                  {job.company}
-                  <span className="text-white/35"> · {job.place}</span>
-                </h3>
-                {clients ? (
-                  <>
-                    <p className="mt-1 font-mono text-xs text-white/40">{job.dates}</p>
-                    <div className="mt-8 space-y-8">
-                      {clients.map((client) => (
-                        <Engagement
-                          key={client.name}
-                          role={client.role}
-                          project={client.project}
-                          dates={client.dates}
-                          team={client.team}
-                          points={client.points}
-                          tech={client.tech}
-                          client={client.name}
-                          current={client.current}
-                        />
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <div className="mt-4">
-                    <Engagement
-                      role={job.role}
-                      project={job.project}
-                      dates={job.dates}
-                      team={job.team}
-                      points={job.points}
-                      tech={job.tech}
-                    />
+          {experience.map((job) => (
+            <article key={job.company + job.dates} className="glass rounded-3xl p-7 md:p-10">
+              <h3 className="font-display text-2xl font-bold">
+                {job.company}
+                <span className="text-white/35"> · {job.place}</span>
+              </h3>
+              {isEmployerJob(job) ? (
+                <>
+                  <p className="mt-1 font-mono text-xs text-white/40">{job.dates}</p>
+                  <div className="mt-8 space-y-8">
+                    {job.clients.map((client) => (
+                      <Engagement
+                        key={client.name}
+                        role={client.role}
+                        project={client.project}
+                        dates={client.dates}
+                        team={client.team}
+                        points={client.points}
+                        tech={client.tech}
+                        client={client.name}
+                        current={client.current}
+                      />
+                    ))}
                   </div>
-                )}
-              </article>
-            );
-          })}
+                </>
+              ) : (
+                <div className="mt-4">
+                  <Engagement
+                    role={job.role}
+                    project={job.project}
+                    dates={job.dates}
+                    team={job.team}
+                    points={job.points}
+                    tech={job.tech}
+                  />
+                </div>
+              )}
+            </article>
+          ))}
         </div>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">

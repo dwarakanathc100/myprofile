@@ -321,7 +321,36 @@ export const featured = [
   },
 ];
 
-export const experience = [
+export type ClientEngagement = {
+  name: string;
+  current?: boolean;
+  role: string;
+  dates: string;
+  team: string;
+  project: string;
+  points: string[];
+  tech: string;
+};
+
+export type ExperienceJob =
+  | {
+      company: string;
+      place: string;
+      dates: string;
+      clients: ClientEngagement[];
+    }
+  | {
+      company: string;
+      place: string;
+      dates: string;
+      role: string;
+      team: string;
+      project: string;
+      points: string[];
+      tech: string;
+    };
+
+export const experience: ExperienceJob[] = [
   {
     company: "Cognizant",
     place: "UK",
