@@ -11,7 +11,7 @@ export const profile = {
   resumeHref: "./Dwarakanath_Cloud_AI_Resume.pdf",
   website: "https://www.cgdwarakanath.com",
   summary:
-    "Senior Backend Software Engineer and GCP Cloud Developer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering, including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. I currently design production AI platforms on GCP using Vertex AI, Gemini, Agent Engine, Document AI, RAG, BigQuery, Cloud Run, Pub/Sub, and Terraform across document intelligence, sales prioritisation, and cash allocation.",
+    "Senior Backend Software Engineer and GCP Cloud Developer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering, including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. I currently design production AI platforms on GCP using Vertex AI, Gemini, Agent Engine, Document AI, RAG, BigQuery Conversational Analytics, Cloud Run, Pub/Sub, and Terraform across document intelligence, sales prioritisation, cash allocation, and natural-language analytics over portfolio, financial, and service-line data.",
 };
 
 export const whatIBuild = ["Cloud platforms", "AI agents", "Automation", "Data pipelines"];
@@ -19,6 +19,7 @@ export const whatIBuild = ["Cloud platforms", "AI agents", "Automation", "Data p
 export const focusing = [
   "Agentic AI architecture",
   "Production GenAI on Google Cloud",
+  "BigQuery Conversational Analytics",
   "Multi-agent orchestration",
   "RAG and tool-enabled agents",
   "Cloud-native reliability (DLQ, Terraform, observability)",
@@ -38,6 +39,18 @@ export const aiAgents = [
     note: "Gemini classifies finance mail; RAG matches remittances to invoices.",
   },
   {
+    title: "iCABS Portfolio Agent",
+    note: "Conversational Analytics over monthly portfolio snapshots: sector and country new sales and live value.",
+  },
+  {
+    title: "Cognos Financial Performance Agent",
+    note: "Natural-language P&L Q&A in BigQuery: Europe revenue, profit and margin by country and line.",
+  },
+  {
+    title: "Service Line Penetration Agent",
+    note: "Pest vs hygiene vs both, by country and sector — cross-sell mix, not campaign rates.",
+  },
+  {
     title: "Self-hosted Gemma on Cloud Run",
     note: "vLLM PoC for cost-efficient inference vs third-party APIs.",
   },
@@ -45,7 +58,7 @@ export const aiAgents = [
 
 export const stats = [
   { value: "10+", label: "Years shipping production systems" },
-  { value: "3", label: "AI platforms on GCP" },
+  { value: "6", label: "AI platforms on GCP" },
   { value: "10k+", label: "Requests / minute at peak" },
   { value: "500k+", label: "Scheduled events / day" },
 ];
@@ -189,46 +202,173 @@ export const featured = [
       "Python",
     ],
   },
+  {
+    id: "icabs",
+    index: "04",
+    title: "iCABS Portfolio",
+    eyebrow: "Conversational analytics",
+    role: "GCP Cloud Developer & AI Engineer",
+    accent: "#3ee0c8",
+    image: "./projects/icabs.png",
+    summary:
+      "A natural-language agent over monthly iCABS portfolio snapshots — where new sales and live value land by sector and country.",
+    problem:
+      "Strategy needed sector and country answers from monthly portfolio extracts. That meant pulling iCABS-style snapshots by hand instead of asking one agreed dataset.",
+    built:
+      "Curated the monthly portfolio grain in BigQuery — live value, new sales, country and sector — then published a Conversational Analytics agent so analysts ask in English and get tables, not another extract.",
+    challenges:
+      "Portfolio is a month-end snapshot, not a live ledger, and it is a separate source from Cognos. The agent had to stay on that grain and refuse to mix P&L into sales-by-sector answers.",
+    result:
+      "Group Strategy can ask where new business is landing this month, by sector and country, without a manual portfolio pull.",
+    architecture: [
+      "iCABS",
+      "BigQuery snapshots",
+      "Curated portfolio",
+      "Conversational Analytics",
+      "NL answers",
+    ],
+    highlights: [
+      "Natural-language Q&A over monthly iCABS portfolio snapshots",
+      "Agreed source for new sales and live customer value by sector and country",
+      "Conversational Analytics on curated BigQuery — not Cognos extracts",
+      "Month-end snapshot grain so freshness and comparisons stay honest",
+    ],
+    stack: [
+      "BigQuery",
+      "Conversational Analytics",
+      "Gemini",
+      "GCP Vertex AI",
+      "SQL",
+      "iCABS",
+    ],
+  },
+  {
+    id: "cognos",
+    index: "05",
+    title: "Cognos Financial Performance",
+    eyebrow: "Conversational analytics",
+    role: "GCP Cloud Developer & AI Engineer",
+    accent: "#f5c16c",
+    image: "./projects/cognos.png",
+    summary:
+      "Natural-language Q&A on mapped Cognos P&L in BigQuery — Europe revenue, profit and margin by country and business line.",
+    problem:
+      "Group Strategy pulled Cognos, mapped it in Excel, and pivoted by country and line whenever someone asked how Europe was performing.",
+    built:
+      "Landed the mapped monthly P&L in BigQuery in USD for the Europe MVP, then stood up a Conversational Analytics agent that answers revenue, profit and margin questions in plain English.",
+    challenges:
+      "Cognos is a different grain from iCABS portfolio. The agent had to keep financial performance on the mapped P&L and not answer sales-mix questions from the wrong table.",
+    result:
+      "Analysts compare countries and lines in conversation instead of rebuilding the same Excel pivots.",
+    architecture: [
+      "Cognos P&L",
+      "Mapped BigQuery",
+      "Conversational Analytics",
+      "NL answers",
+    ],
+    highlights: [
+      "NL Q&A over mapped Cognos financials in BigQuery",
+      "Europe MVP: revenue, profit and margin by country and business line",
+      "Replaces recurring Cognos-to-Excel pivot work",
+      "Kept on the P&L grain so it does not collide with portfolio or SLP agents",
+    ],
+    stack: [
+      "BigQuery",
+      "Conversational Analytics",
+      "Gemini",
+      "GCP Vertex AI",
+      "SQL",
+      "Cognos",
+    ],
+  },
+  {
+    id: "slp",
+    index: "06",
+    title: "Service Line Penetration",
+    eyebrow: "Conversational analytics",
+    role: "GCP Cloud Developer & AI Engineer",
+    accent: "#6ea8ff",
+    image: "./projects/slp.png",
+    summary:
+      "A cross-sell agent for Europe: what share of customers take pest, hygiene, or both — by country and sector.",
+    problem:
+      "Strategy could not see service-line mix without joining monthly snapshots by hand. The question was penetration and cross-sell, not campaign response rates.",
+    built:
+      "Published a Conversational Analytics agent over monthly service-line mix in BigQuery. Each customer is classified as pest only, hygiene only, or both, then broken down by Europe, country and sector.",
+    challenges:
+      "Many product lines compress into two commercial families. Revenue opportunity was out of scope for the MVP, so the agent reports counts and percentages and stays off the Cognos P&L.",
+    result:
+      "Analysts ask where multi-service customers already sit and where a second line is still open — in natural language, with an as-of period.",
+    architecture: [
+      "Service-line snapshots",
+      "BigQuery mix",
+      "Conversational Analytics",
+      "NL answers",
+    ],
+    highlights: [
+      "Pest vs hygiene vs both — customer counts and % by country and sector",
+      "Built on monthly service-line snapshots, not campaign rates",
+      "Europe cross-sell view for Group Strategy",
+      "Revenue left as a later enhancement; MVP answers mix, not £ opportunity",
+    ],
+    stack: [
+      "BigQuery",
+      "Conversational Analytics",
+      "Gemini",
+      "GCP Vertex AI",
+      "SQL",
+    ],
+  },
 ];
 
 export const experience = [
   {
-    company: "Rentokil Initial",
+    company: "Cognizant",
     place: "UK",
-    role: "GCP Cloud Developer & AI Engineer",
-    dates: "03/2026 - present",
-    team: "Team of 8",
-    project: "Cloud & AI Platform Engineering",
-    points: [
-      "Consumables: event-driven document intelligence from safety PDFs using Drive webhooks, API Gateway, Cloud Run, Pub/Sub, Document AI, BigQuery, and QlikCloud.",
-      "Consumables reliability: split webhook ingestion from AI workers, RAG over BigQuery entities, and layered dead-letter recovery.",
-      "EU Prospect Prioritisation: three-CTE BigQuery model so ranking includes only leads assigned through employee lead codes.",
-      "Multi-agent sales intelligence: Vertex AI Agent Engine for retrieval/RAG, ML value estimation, and prioritisation with Gemini and Google ADK.",
-      "AI Cash Allocation: Gemini classification of inbound credit-control mail plus RAG matching of remittances to invoices.",
-      "Led a self-hosted Gemma PoC on Cloud Run GPU with vLLM, plus Terraform, autoscaling, and data-quality reviews.",
+    dates: "08/2024 - present",
+    clients: [
+      {
+        name: "Rentokil Initial",
+        current: true,
+        role: "GCP Cloud Developer & AI Engineer",
+        dates: "03/2026 - present",
+        team: "Team of 8",
+        project: "Cloud & AI Platform Engineering",
+        points: [
+          "Consumables: event-driven document intelligence from safety PDFs using Drive webhooks, API Gateway, Cloud Run, Pub/Sub, Document AI, BigQuery, and QlikCloud.",
+          "Consumables reliability: split webhook ingestion from AI workers, RAG over BigQuery entities, and layered dead-letter recovery.",
+          "EU Prospect Prioritisation: three-CTE BigQuery model so ranking includes only leads assigned through employee lead codes.",
+          "Multi-agent sales intelligence: Vertex AI Agent Engine for retrieval/RAG, ML value estimation, and prioritisation with Gemini and Google ADK.",
+          "AI Cash Allocation: Gemini classification of inbound credit-control mail plus RAG matching of remittances to invoices.",
+          "iCABS Portfolio agent: Conversational Analytics over monthly portfolio snapshots for new sales and live value by sector and country.",
+          "Cognos Financial Performance agent: natural-language Q&A on mapped Europe P&L in BigQuery (revenue, profit, margin by country and line).",
+          "Service Line Penetration agent: pest vs hygiene vs both for Europe, by country and sector — cross-sell mix, not campaign rates.",
+          "Led a self-hosted Gemma PoC on Cloud Run GPU with vLLM, plus Terraform, autoscaling, and data-quality reviews.",
+        ],
+        tech: "GCP · Vertex AI · Agent Engine · Gemini · Document AI · RAG · Google ADK · BigQuery · Cloud Run · Pub/Sub · Terraform · Python · vLLM · Gemma",
+      },
+      {
+        name: "American Express",
+        current: false,
+        role: "Senior Golang Developer",
+        dates: "08/2024 - 04/2026",
+        team: "Team of 7",
+        project: "Global Loyalty Program",
+        points: [
+          "Built Golang microservices for loyalty enrolments and rewards handling millions of transactions daily.",
+          "Designed REST APIs with net/http and Gorilla Mux, with deep unit-test coverage.",
+          "Implemented Kafka event workflows for lifecycle, eligibility, and reward events with guaranteed delivery.",
+          "Tuned services for 10,000+ requests/minute, low latency, and resilience.",
+          "Used PostgreSQL, MongoDB, and Redis for transactional data, caching, and performance.",
+          "Deployed on Docker/Kubernetes with health checks, resource limits, and autoscaling; led architecture discussions.",
+        ],
+        tech: "Golang · Kafka · PostgreSQL · Redis · Docker · Kubernetes · Elastic · Kibana · OpenShift Hydra",
+      },
     ],
-    tech: "GCP · Vertex AI · Agent Engine · Gemini · Document AI · RAG · Google ADK · BigQuery · Cloud Run · Pub/Sub · Terraform · Python · vLLM · Gemma",
-  },
-  {
-    company: "Amex",
-    place: "UK",
-    role: "Senior Golang Developer",
-    dates: "08/2024 - 04/2026",
-    team: "Team of 7",
-    project: "Global Loyalty Program",
-    points: [
-      "Built Golang microservices for loyalty enrolments and rewards handling millions of transactions daily.",
-      "Designed REST APIs with net/http and Gorilla Mux, with deep unit-test coverage.",
-      "Implemented Kafka event workflows for lifecycle, eligibility, and reward events with guaranteed delivery.",
-      "Tuned services for 10,000+ requests/minute, low latency, and resilience.",
-      "Used PostgreSQL, MongoDB, and Redis for transactional data, caching, and performance.",
-      "Deployed on Docker/Kubernetes with health checks, resource limits, and autoscaling; led architecture discussions.",
-    ],
-    tech: "Golang · Kafka · PostgreSQL · Redis · Docker · Kubernetes · Elastic · Kibana · OpenShift Hydra",
   },
   {
     company: "Expedia",
-    place: "US",
+    place: "UK",
     role: "Golang Developer",
     dates: "05/2022 - 07/2024",
     team: "Team of 6",
@@ -293,7 +433,7 @@ export const skillGroups = [
   },
   {
     title: "AI",
-    items: ["Gemini", "Document AI", "Vertex AI Agent Engine", "Agentic AI", "RAG", "Google ADK"],
+    items: ["Gemini", "Document AI", "Vertex AI Agent Engine", "Conversational Analytics", "Agentic AI", "RAG", "Google ADK"],
   },
   {
     title: "Infrastructure",

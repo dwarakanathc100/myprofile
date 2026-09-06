@@ -18,8 +18,9 @@ export function Featured() {
           Production AI on GCP.
         </h2>
         <p className="mt-4 max-w-2xl text-white/60">
-          Three platforms I designed and delivered: document intelligence, multi-agent prospect
-          ranking, and cash allocation. Problem, build, architecture, result.
+          Six systems I designed and delivered: document intelligence, multi-agent prospect
+          ranking, cash allocation, and three BigQuery conversational analytics agents. Problem,
+          build, architecture, result.
         </p>
 
         <div className="mt-14 space-y-10">

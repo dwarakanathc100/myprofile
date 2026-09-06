@@ -19,7 +19,7 @@ export function About() {
         </div>
         <div className="grid gap-4">
           {[
-            ["Now", "Agentic AI, RAG, and ML on GCP Vertex AI - sales, documents, cash."],
+            ["Now", "Agentic AI, RAG, and Conversational Analytics on GCP — sales, documents, cash, portfolio and P&L."],
             ["Before", "Loyalty, campaign scheduling, payments - Go and Java at scale."],
             ["Mode", "Event-driven. Clean architecture. Reviews that raise the floor."],
             ["Based", `${profile.location} · ${profile.email}`],
