@@ -1,7 +1,9 @@
 export const profile = {
   name: "Dwarakanath C",
-  title: "GCP Cloud Developer & AI Engineer",
-  subtitle: "Senior Backend Engineer · Golang / Java",
+  title: "AI Engineer | GCP Cloud Engineer",
+  subtitle: "Senior Backend Engineer · Golang / Java · London",
+  pitch:
+    "I build production AI, cloud and automation on GCP: Cloud Run, Pub/Sub, BigQuery, Terraform, Vertex AI and Gemini.",
   location: "London, UK",
   phone: "+44 7979851621",
   email: "dwarakanathc45@gmail.com",
@@ -12,17 +14,33 @@ export const profile = {
     "Senior Backend Software Engineer and GCP Cloud Developer with 10+ years across backend development, event-driven microservices, and cloud/AI engineering, including 4+ years of hands-on Golang and 6+ years in Java/J2EE. I build high-throughput distributed systems with Go, Kafka, RabbitMQ, PostgreSQL, Redis, and Docker/Kubernetes for regulated platforms in financial services, travel, and FMCG. I currently design production AI platforms on GCP using Vertex AI, Gemini, Agent Engine, Document AI, RAG, BigQuery, Cloud Run, Pub/Sub, and Terraform across document intelligence, sales prioritisation, and cash allocation.",
 };
 
-export const aiStack = [
-  "Agentic AI",
-  "RAG",
-  "Machine Learning",
-  "GCP Vertex AI",
-  "Gemini",
-  "Document AI",
-  "Agent Engine",
-  "vLLM",
-  "Gemma",
-  "LangGraph / ADK",
+export const whatIBuild = ["Cloud platforms", "AI agents", "Automation", "Data pipelines"];
+
+export const focusing = [
+  "Agentic AI architecture",
+  "Production GenAI on Google Cloud",
+  "Multi-agent orchestration",
+  "RAG and tool-enabled agents",
+  "Cloud-native reliability (DLQ, Terraform, observability)",
+];
+
+export const aiAgents = [
+  {
+    title: "Document Intelligence Agent",
+    note: "Document AI + RAG over extracted SDS data in BigQuery.",
+  },
+  {
+    title: "Prospect Prioritisation Agents",
+    note: "Vertex AI Agent Engine: retrieve, estimate value, rank leads.",
+  },
+  {
+    title: "Gmail Classification & Cash Allocation",
+    note: "Gemini classifies finance mail; RAG matches remittances to invoices.",
+  },
+  {
+    title: "Self-hosted Gemma on Cloud Run",
+    note: "vLLM PoC for cost-efficient inference vs third-party APIs.",
+  },
 ];
 
 export const stats = [
@@ -42,9 +60,24 @@ export const featured = [
     accent: "#3ee0c8",
     image: "./projects/consumables.png",
     summary:
-      "An event-driven document-intelligence platform that turns incoming safety and chemical PDFs into structured analytics - without anyone opening a file.",
-    story:
-      "When a PDF lands in a watched Drive folder, the platform wakes itself. A webhook hits API Gateway, Cloud Run publishes a metadata event, and a separate processor downloads the document, runs Document AI extraction, writes rows to BigQuery, and archives the original to Cloud Storage. A RAG layer over the extracted entities lets downstream agents query chemical context instead of raw PDFs. Failures never vanish - they fan out through layered dead-letter paths so operations can recover.",
+      "Event-driven document intelligence that turns safety and chemical PDFs into structured analytics.",
+    problem:
+      "Safety and chemical PDFs arrived in Drive as files people had to open. Downstream analytics and agents needed structured rows, not blobs.",
+    built:
+      "Split a fast webhook path from a long-running Document AI worker. Drive notifications hit API Gateway and Cloud Run, Pub/Sub carries metadata, Document AI extracts entities, BigQuery stores rows, Cloud Storage archives the PDF. RAG sits on the extracted entities.",
+    challenges:
+      "Webhook timeouts vs slow Document AI, watch-channel expiry, and failures that must not vanish. Solved with Cloud Scheduler renewals and layered DLQs (GCS, BigQuery error rows, Pub/Sub retries).",
+    result:
+      "New PDFs become queryable BigQuery rows for Qlik and downstream agents, with a documented recovery path when a file fails.",
+    architecture: [
+      "Drive",
+      "API Gateway",
+      "Cloud Run",
+      "Pub/Sub",
+      "Document AI",
+      "BigQuery",
+      "DLQ / Monitoring",
+    ],
     highlights: [
       "Document AI + machine learning extraction of chemical entities from SDS PDFs",
       "RAG over structured BigQuery rows so agents retrieve product context, not blobs",
@@ -74,9 +107,22 @@ export const featured = [
     accent: "#6ea8ff",
     image: "./projects/prospects.png",
     summary:
-      "An agentic Vertex AI system that ranks EU sales prospects by worth, assignment, and readiness - so consultants chase the right leads first.",
-    story:
-      "I built the EU prospect pipeline in BigQuery as a three-CTE query (employee, occupation, prospect) so ranking only includes leads strictly assigned via employee lead codes. On top of that sit three Vertex AI Agent Engine services: a Data Retrieval Agent (RAG + enrichment), a Value Estimation Agent (ML scoring), and a Prioritisation Agent that ranks and routes to sales. I also hunted down broken view dependencies, missing autoscaling, and KPI join gaps that were quietly poisoning targeting.",
+      "Vertex AI agents rank EU sales prospects by assignment, worth and readiness.",
+    problem:
+      "Sales targeting was noisy when ranking included prospects that were not assigned through employee lead codes, plus broken views and KPI join gaps.",
+    built:
+      "A three-CTE BigQuery model (employee, occupation, prospect) plus three Vertex AI Agent Engine services: Data Retrieval (RAG + enrichment), Value Estimation (ML scoring), and Prioritisation. Gemini and Google ADK orchestrate and publish to Pub/Sub.",
+    challenges:
+      "Misrouted view dependencies, missing autoscaling, and formula errors in financial KPI tables. Fixed in Terraform and through structured data-quality reviews.",
+    result:
+      "Consultants only see assigned leads, scored and ordered, instead of an unfiltered prospect dump.",
+    architecture: [
+      "BigQuery",
+      "Vertex AI Agents",
+      "Gemini / ADK",
+      "Pub/Sub",
+      "Sales routing",
+    ],
     highlights: [
       "Agentic AI on Vertex AI Agent Engine: retrieve, estimate value, prioritise",
       "RAG enrichment of prospect context before ranking",
@@ -106,9 +152,23 @@ export const featured = [
     accent: "#f5c16c",
     image: "./projects/cash.png",
     summary:
-      "An agentic credit-control layer that classifies inbound finance mail and matches payments to invoices with Vertex AI - cash applied, not chased.",
-    story:
-      "Inbound mailbox events trigger Cloud Run orchestrators over Pub/Sub. A classification path reads the message, labels it with Gemini on Vertex AI, and lands structured results in BigQuery. A second agentic graph uses RAG over invoice history to match remittances and propose cash allocation. Infrastructure, watches, and alerts are Terraform-managed so the mailbox never loses its signal.",
+      "Gemini classifies inbound finance mail; agents match remittances to invoices.",
+    problem:
+      "Credit control received remittances and finance mail that people had to read and apply by hand.",
+    built:
+      "Gmail watch events go to Pub/Sub and Cloud Run. Gemini on Vertex AI classifies the message into BigQuery. A second graph uses RAG over invoice history to propose cash allocation. Terraform, Cloud Scheduler and Secret Manager keep the watch alive.",
+    challenges:
+      "Mailbox watches expire, IAM has to stay tight, and matches must be grounded in real ledgers rather than guessed from the email body.",
+    result:
+      "Finance sees classified mail and suggested allocations with a BigQuery audit trail, instead of a pile of remittances.",
+    architecture: [
+      "Gmail",
+      "Pub/Sub",
+      "Cloud Run",
+      "Gemini",
+      "RAG / invoices",
+      "BigQuery",
+    ],
     highlights: [
       "Agentic invoice-matching and cash-allocation reasoning on Vertex AI",
       "RAG over invoice history so agents ground matches in real ledgers",
@@ -228,64 +288,24 @@ export const earlier = [
 
 export const skillGroups = [
   {
-    title: "AI & Intelligence",
-    items: [
-      "Agentic AI",
-      "RAG",
-      "Machine Learning",
-      "GCP Vertex AI",
-      "Vertex AI Agent Engine",
-      "Gemini",
-      "Document AI",
-      "Google ADK",
-      "LLM inference (vLLM, Gemma)",
-      "Prompt evaluation",
-    ],
+    title: "Cloud",
+    items: ["GCP", "Cloud Run", "Pub/Sub", "BigQuery", "IAM", "API Gateway", "Secret Manager"],
   },
   {
-    title: "Languages",
-    items: ["Golang", "Java / Spring Boot / JPA", "Python", "SQL"],
+    title: "AI",
+    items: ["Gemini", "Document AI", "Vertex AI Agent Engine", "Agentic AI", "RAG", "Google ADK"],
   },
   {
-    title: "Backend & APIs",
-    items: ["net/http", "Gorilla Mux", "Gin", "Echo", "Spring Boot", "REST"],
+    title: "Infrastructure",
+    items: ["Terraform", "Docker", "Kubernetes", "CI/CD", "Cloud Scheduler"],
   },
   {
-    title: "Events",
-    items: ["Kafka", "RabbitMQ", "Pub/Sub", "Async workflows"],
+    title: "Development",
+    items: ["Python", "Golang", "Java / Spring Boot", "SQL", "REST APIs"],
   },
   {
-    title: "Data",
-    items: ["PostgreSQL", "Redis", "MongoDB", "MySQL", "Oracle", "BigQuery"],
-  },
-  {
-    title: "Cloud & Platform",
-    items: [
-      "GCP Cloud Run",
-      "IAM",
-      "Terraform",
-      "API Gateway",
-      "AWS",
-      "OpenShift Hydra",
-      "Jenkins",
-      "Spinnaker",
-      "Docker",
-      "Kubernetes",
-    ],
-  },
-  {
-    title: "Quality",
-    items: ["Unit testing", "BDD / Cucumber", "Zap Logger", "Splunk", "Elastic", "Kibana"],
-  },
-  {
-    title: "Practice",
-    items: [
-      "Microservices",
-      "Event-driven architecture",
-      "Clean architecture",
-      "Agile / Scrum",
-      "Code reviews",
-    ],
+    title: "Reliability",
+    items: ["DLQ recovery", "Observability", "Autoscaling", "Data quality", "Load at 10k+ rpm"],
   },
 ];
 

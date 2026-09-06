@@ -3,6 +3,7 @@ import { Awards } from "./components/Awards";
 import { Contact } from "./components/Contact";
 import { Experience } from "./components/Experience";
 import { Featured } from "./components/Featured";
+import { Focus } from "./components/Focus";
 import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
 import { Personal } from "./components/Personal";
@@ -19,6 +20,7 @@ export default function App() {
       <Nav />
       <main className="relative">
         <Hero />
+        <Focus />
         <About />
         <Featured />
         <Personal />

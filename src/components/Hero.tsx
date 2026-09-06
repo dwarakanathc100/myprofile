@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { aiStack, profile, stats } from "../data/profile";
+import { profile, stats } from "../data/profile";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { HeroStage } from "./HeroStage";
 
@@ -11,9 +11,9 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            className="section-kicker mb-6"
+            className="section-kicker mb-5"
           >
-            London · Remote-ready · Production AI
+            London · Open to Cloud & AI roles
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -27,58 +27,49 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16 }}
-            className="mt-6 max-w-xl text-xl text-ice/90 sm:text-2xl"
+            className="mt-5 text-xl text-ice/90 sm:text-2xl"
           >
             {profile.title}
-            <span className="block text-base text-white/55 sm:text-lg">{profile.subtitle}</span>
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.28 }}
-            className="mt-6 max-w-xl text-white/65"
+            transition={{ delay: 0.24 }}
+            className="mt-4 max-w-xl text-white/65"
           >
-            I design systems that think - agentic AI, RAG, machine learning on Vertex AI, and
-            high-throughput backends for regulated industries.
+            {profile.pitch}
           </motion.p>
-          <motion.div
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-6 flex flex-wrap gap-2"
+            className="mt-2 text-sm text-white/40"
           >
-            {aiStack.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-cyan/25 bg-cyan/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-cyan"
-              >
-                {item}
-              </span>
-            ))}
-          </motion.div>
+            {profile.subtitle}
+          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.36 }}
-            className="mt-10 flex flex-wrap gap-4"
+            transition={{ delay: 0.32 }}
+            className="mt-8 flex flex-wrap gap-3"
           >
             <a
               href="#work"
-              className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink shadow-glow transition hover:translate-y-[-2px]"
+              className="rounded-full bg-cyan px-6 py-3 text-sm font-semibold text-ink shadow-glow"
             >
-              Enter the work
+              View projects
             </a>
             <a
-              href="#personal"
-              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition hover:border-cyan hover:text-cyan"
+              href={profile.resumeHref}
+              download="Dwarakanath_Cloud_AI_Resume.pdf"
+              className="rounded-full border border-gold/40 px-6 py-3 text-sm text-gold"
             >
-              Personal projects
+              Download resume
             </a>
             <a
               href={profile.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition hover:border-gold hover:text-gold"
+              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80"
             >
               LinkedIn
             </a>
@@ -94,21 +85,6 @@ export function Hero() {
             <div className="font-display text-3xl font-bold text-gold">{s.value}</div>
             <div className="mt-1 text-xs uppercase tracking-wider text-white/45">{s.label}</div>
           </div>
-        ))}
-      </div>
-      <div className="mx-auto mt-8 flex max-w-6xl flex-wrap gap-3">
-        {[
-          ["#consumables", "01 Consumables"],
-          ["#prospects", "02 Prospect Prioritisation"],
-          ["#cash", "03 AI Cash Allocation"],
-        ].map(([href, label]) => (
-          <a
-            key={href}
-            href={href}
-            className="rounded-full border border-white/10 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white/60 transition hover:border-cyan hover:text-cyan"
-          >
-            {label}
-          </a>
         ))}
       </div>
     </section>

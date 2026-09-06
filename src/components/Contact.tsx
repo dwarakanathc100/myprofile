@@ -30,13 +30,13 @@ export function Contact() {
     <section id="contact" className="relative z-10 px-5 py-24">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="overflow-hidden rounded-[2.2rem] border border-cyan/20 bg-gradient-to-br from-[#0c1c22] via-[#0b1220] to-[#120e0a] p-10 shadow-glow md:p-12">
-          <p className="section-kicker">Contact me</p>
+          <p className="section-kicker">Let's build something useful</p>
           <h2 className="mt-4 font-display text-4xl font-bold leading-tight md:text-5xl">
-            Tell me what you want to build.
+            Cloud, GCP and Agentic AI roles in the UK.
           </h2>
           <p className="mt-6 text-white/60">
-            Roles, platforms, or a side project. Leave your name and message and it lands in my
-            inbox.
+            I am interested in Cloud Engineering, GCP, AI Engineering and agentic systems.
+            Email, LinkedIn or the form - you should not have to hunt.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a
