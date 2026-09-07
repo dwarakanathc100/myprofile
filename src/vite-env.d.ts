@@ -19,6 +19,7 @@ interface Window {
         initTokenClient: (config: {
           client_id: string;
           scope: string;
+          include_granted_scopes?: boolean;
           callback: (response: { access_token?: string; error?: string }) => void;
         }) => GoogleTokenClient;
       };

@@ -57,28 +57,35 @@ function loadGsi(): Promise<void> {
   });
 }
 
-export async function connectGoogle(): Promise<string> {
+function requestGoogleToken(scope: string, tokenKey: string, expKey: string, forceConsent: boolean): Promise<string> {
   const clientId = googleClientId();
   if (!clientId) throw new Error("Add VITE_GOOGLE_CLIENT_ID to connect Google.");
-  await loadGsi();
-  if (!window.google) throw new Error("Google sign-in is not available.");
 
   return new Promise((resolve, reject) => {
     const client = window.google!.accounts.oauth2.initTokenClient({
       client_id: clientId,
-      scope: SCOPES,
+      scope,
+      // Google rejects youtube.upload + drive.file in one request. GIS defaults
+      // to include_granted_scopes=true, which would merge the two grants.
+      include_granted_scopes: false,
       callback: (response) => {
         if (response.error || !response.access_token) {
           reject(new Error(response.error || "Google did not return a token."));
           return;
         }
-        sessionStorage.setItem(TOKEN_KEY, response.access_token);
-        sessionStorage.setItem(TOKEN_EXP_KEY, String(Date.now() + 50 * 60 * 1000));
+        sessionStorage.setItem(tokenKey, response.access_token);
+        sessionStorage.setItem(expKey, String(Date.now() + 50 * 60 * 1000));
         resolve(response.access_token);
       },
     });
-    client.requestAccessToken({ prompt: storedAccessToken() ? "" : "consent" });
+    client.requestAccessToken({ prompt: forceConsent ? "consent" : "" });
   });
+}
+
+export async function connectGoogle(): Promise<string> {
+  await loadGsi();
+  if (!window.google) throw new Error("Google sign-in is not available.");
+  return requestGoogleToken(SCOPES, TOKEN_KEY, TOKEN_EXP_KEY, !storedAccessToken());
 }
 
 export async function requireToken(): Promise<string> {
@@ -199,27 +206,9 @@ export function storedYoutubeToken(): string | null {
 }
 
 export async function connectYoutube(): Promise<string> {
-  const clientId = googleClientId();
-  if (!clientId) throw new Error("Add VITE_GOOGLE_CLIENT_ID to connect YouTube.");
   await loadGsi();
   if (!window.google) throw new Error("Google sign-in is not available.");
-
-  return new Promise((resolve, reject) => {
-    const client = window.google!.accounts.oauth2.initTokenClient({
-      client_id: clientId,
-      scope: YT_SCOPE,
-      callback: (response) => {
-        if (response.error || !response.access_token) {
-          reject(new Error(response.error || "YouTube did not return a token."));
-          return;
-        }
-        sessionStorage.setItem(YT_TOKEN_KEY, response.access_token);
-        sessionStorage.setItem(YT_TOKEN_EXP_KEY, String(Date.now() + 50 * 60 * 1000));
-        resolve(response.access_token);
-      },
-    });
-    client.requestAccessToken({ prompt: storedYoutubeToken() ? "" : "consent" });
-  });
+  return requestGoogleToken(YT_SCOPE, YT_TOKEN_KEY, YT_TOKEN_EXP_KEY, !storedYoutubeToken());
 }
 
 async function requireYoutubeToken(): Promise<string> {
