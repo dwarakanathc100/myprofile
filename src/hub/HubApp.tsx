@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactElement } from "react";
-import { clearGoogleToken, connectGoogle, googleEnabled, storedAccessToken } from "./google";
+import { clearGoogleToken, connectGoogle, storedAccessToken } from "./google";
 import { FilesPage } from "./pages/Files";
 import { KeyDatesPage } from "./pages/KeyDates";
 import { MeetingsPage } from "./pages/Meetings";
@@ -57,29 +57,27 @@ export function HubApp() {
             <h1 className="font-display text-xl font-bold">LifeHub</h1>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {googleEnabled() ? (
-              connected ? (
-                <button
-                  type="button"
-                  onClick={() => {
-                    clearGoogleToken();
-                    setConnected(false);
-                  }}
-                  className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/60"
-                >
-                  Disconnect Google
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  disabled={busy}
-                  onClick={() => void onConnect()}
-                  className="rounded-full border border-cyan/40 bg-cyan/10 px-3 py-1.5 text-xs text-cyan"
-                >
-                  {busy ? "Connecting…" : "Connect Google"}
-                </button>
-              )
-            ) : null}
+            {connected ? (
+              <button
+                type="button"
+                onClick={() => {
+                  clearGoogleToken();
+                  setConnected(false);
+                }}
+                className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/60"
+              >
+                Disconnect Google
+              </button>
+            ) : (
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void onConnect()}
+                className="rounded-full border border-cyan/40 bg-cyan/10 px-3 py-1.5 text-xs text-cyan"
+              >
+                {busy ? "Connecting…" : "Connect Google"}
+              </button>
+            )}
             <a href="#top" className="rounded-full border border-white/15 px-3 py-1.5 text-xs text-white/55">
               Back to site
             </a>

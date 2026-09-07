@@ -7,8 +7,11 @@ const TOKEN_KEY = "lh_google_token";
 const TOKEN_EXP_KEY = "lh_google_token_exp";
 const GSI_SRC = "https://accounts.google.com/gsi/client";
 
+const PUBLIC_WEB_CLIENT_ID =
+  "866193989995-7vjmmq5n1m24sa6p3ifvor82upbe9df7.apps.googleusercontent.com";
+
 export function googleClientId(): string {
-  return import.meta.env.VITE_GOOGLE_CLIENT_ID?.trim() ?? "";
+  return import.meta.env.VITE_GOOGLE_CLIENT_ID?.trim() || PUBLIC_WEB_CLIENT_ID;
 }
 
 export function googleEnabled(): boolean {
