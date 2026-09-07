@@ -498,10 +498,22 @@ export const personalProjects = [
     status: "In progress",
     image: "./projects/lifehub.png",
     summary:
-      "A personal life-operating system - todos, meetings, and notes in one place, with Gemini classifying what matters first.",
+      "A personal operating system that already writes to Google: Calendar for meetings, Drive for recordings and PDFs, YouTube for speaking practice, Gmail for send.",
     story:
-      "Todos are already end-to-end: FastAPI + Postgres, Gemini priority classification, a Next.js web app, and an Expo mobile client. Meetings (Google Calendar + notes) and real Google OAuth are next.",
-    stack: ["Next.js", "Expo", "FastAPI", "Postgres", "Gemini", "Python", "TypeScript"],
+      "Google OAuth is live. Meetings create and sync Google Calendar events; speaking practice uploads the video to your Drive LifeHub folder and can push it unlisted to YouTube; PDFs and meeting recordings stay in Drive, not on our disk. Todos still use Postgres plus optional Calendar due dates and Gemini priority. Next: keep Google as the system of record so more tabs do not need a private database.",
+    stack: [
+      "Next.js",
+      "Expo",
+      "FastAPI",
+      "Google Calendar",
+      "Google Drive",
+      "YouTube",
+      "Gmail",
+      "Gemini",
+      "Postgres",
+      "Python",
+      "TypeScript",
+    ],
   },
   {
     id: "mathsapp",
@@ -528,10 +540,6 @@ export const personalProjects = [
 ];
 
 export const futureApps = [
-  {
-    title: "LifeHub Meetings",
-    note: "Google Calendar, meeting notes, and Google OAuth - the next LifeHub tab after Todos.",
-  },
   {
     title: "Maths App - Grade 2+",
     note: "Remaining Grade 1 modules, saved scores, matching and drag-and-drop, then later grades.",
