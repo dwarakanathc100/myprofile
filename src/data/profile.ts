@@ -67,6 +67,7 @@ export const featured = [
   {
     id: "consumables",
     index: "01",
+    category: "Intelligence",
     title: "Consumables",
     eyebrow: "Document intelligence",
     role: "GCP Cloud Developer & AI Engineer",
@@ -114,6 +115,7 @@ export const featured = [
   {
     id: "prospects",
     index: "02",
+    category: "Agents",
     title: "Prospect Prioritisation",
     eyebrow: "Multi-agent sales intelligence",
     role: "GCP Cloud Developer & AI Engineer",
@@ -159,6 +161,7 @@ export const featured = [
   {
     id: "cash",
     index: "03",
+    category: "Agents",
     title: "AI Cash Allocation",
     eyebrow: "Autonomous finance agents",
     role: "AI Engineer",
@@ -205,6 +208,7 @@ export const featured = [
   {
     id: "icabs",
     index: "04",
+    category: "Analytics",
     title: "iCABS Portfolio",
     eyebrow: "Conversational analytics",
     role: "GCP Cloud Developer & AI Engineer",
@@ -245,6 +249,7 @@ export const featured = [
   {
     id: "cognos",
     index: "05",
+    category: "Analytics",
     title: "Cognos Financial Performance",
     eyebrow: "Conversational analytics",
     role: "GCP Cloud Developer & AI Engineer",
@@ -284,6 +289,7 @@ export const featured = [
   {
     id: "slp",
     index: "06",
+    category: "Analytics",
     title: "Service Line Penetration",
     eyebrow: "Conversational analytics",
     role: "GCP Cloud Developer & AI Engineer",

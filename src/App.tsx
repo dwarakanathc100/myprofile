@@ -9,6 +9,7 @@ import { Hero } from "./components/Hero";
 import { Nav } from "./components/Nav";
 import { Personal } from "./components/Personal";
 import { Scene } from "./components/Scene";
+import { ScrollProgress } from "./components/ScrollProgress";
 import { SideUniverse } from "./components/SideUniverse";
 import { Skills } from "./components/Skills";
 import { HubApp } from "./hub/HubApp";
@@ -28,11 +29,18 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen">
+      <a
+        href="#content"
+        className="skip-link fixed left-4 top-4 z-[60] rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink"
+      >
+        Skip to content
+      </a>
+      <ScrollProgress />
       <Scene />
       <SideUniverse />
       <div className="grain" />
       <Nav />
-      <main className="relative">
+      <main id="content" className="relative" tabIndex={-1}>
         <Hero />
         <Focus />
         <About />

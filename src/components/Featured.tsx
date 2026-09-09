@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useMemo, useState } from "react";
 import { featured } from "../data/profile";
 import { ArchFlow } from "./ArchFlow";
 
@@ -9,7 +10,23 @@ const blocks = [
   ["Result", "result"],
 ] as const;
 
+const filters = ["All", "Intelligence", "Agents", "Analytics"] as const;
+type Filter = (typeof filters)[number];
+
 export function Featured() {
+  const [filter, setFilter] = useState<Filter>("All");
+  const [query, setQuery] = useState("");
+  const visibleProjects = useMemo(() => {
+    const term = query.trim().toLowerCase();
+    return featured.filter((project) => {
+      const matchesFilter = filter === "All" || project.category === filter;
+      const haystack = [project.title, project.eyebrow, project.summary, ...project.stack]
+        .join(" ")
+        .toLowerCase();
+      return matchesFilter && (!term || haystack.includes(term));
+    });
+  }, [filter, query]);
+
   return (
     <section id="work" className="relative z-10 px-5 py-10">
       <div className="mx-auto max-w-6xl">
@@ -23,8 +40,43 @@ export function Featured() {
           build, architecture, result.
         </p>
 
+        <div className="glass mt-8 rounded-2xl p-4 md:flex md:items-center md:justify-between md:gap-5">
+          <div className="flex flex-wrap items-center gap-2" aria-label="Filter case studies">
+            {filters.map((item) => (
+              <button
+                key={item}
+                type="button"
+                aria-pressed={filter === item}
+                onClick={() => setFilter(item)}
+                className={`rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition ${
+                  filter === item
+                    ? "border-cyan bg-cyan text-ink"
+                    : "border-white/10 text-white/60 hover:border-cyan/50 hover:text-cyan"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <label className="mt-4 block md:mt-0 md:w-72">
+            <span className="sr-only">Search case studies</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search GCP, RAG, BigQuery..."
+              className="w-full rounded-xl border border-white/10 bg-ink/45 px-3 py-2 text-sm text-white outline-none placeholder:text-white/35 focus:border-cyan"
+            />
+          </label>
+        </div>
+        <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-white/40" aria-live="polite">
+          Showing {visibleProjects.length} of {featured.length} case studies
+          {filter !== "All" ? ` · ${filter}` : ""}
+          {query ? ` · matching “${query.trim()}”` : ""}
+        </p>
+
         <div className="mt-14 space-y-10">
-          {featured.map((project) => (
+          {visibleProjects.map((project) => (
             <motion.article
               key={project.id}
               id={project.id}
@@ -73,6 +125,21 @@ export function Featured() {
               </div>
             </motion.article>
           ))}
+          {visibleProjects.length === 0 && (
+            <div className="glass rounded-3xl p-8 text-center">
+              <p className="font-display text-2xl font-bold">No case studies match that yet.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setFilter("All");
+                  setQuery("");
+                }}
+                className="mt-4 rounded-full border border-cyan/40 px-4 py-2 text-sm text-cyan transition hover:bg-cyan hover:text-ink"
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -5,6 +5,17 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 export function Contact() {
   const [status, setStatus] = useState<Status>("idle");
+  const [copied, setCopied] = useState(false);
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2400);
+    } catch {
+      setCopied(false);
+    }
+  }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -45,6 +56,13 @@ export function Contact() {
             >
               {profile.email}
             </a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition hover:border-cyan hover:text-cyan"
+            >
+              {copied ? "Email copied" : "Copy email"}
+            </button>
             <a
               href={`tel:${profile.phone.replace(/\s/g, "")}`}
               className="rounded-full border border-white/15 px-6 py-3 text-sm text-white/80"
@@ -67,7 +85,10 @@ export function Contact() {
               Download resume
             </a>
           </div>
-          <p className="mt-8 font-mono text-xs text-white/35">{profile.location}</p>
+          <p className="mt-5 min-h-5 text-sm text-cyan" aria-live="polite">
+            {copied ? "Email address copied to your clipboard." : ""}
+          </p>
+          <p className="mt-3 font-mono text-xs text-white/35">{profile.location}</p>
         </div>
 
         <form
@@ -115,14 +136,16 @@ export function Contact() {
           >
             {status === "sending" ? "Sending..." : "Send message"}
           </button>
-          {status === "sent" && (
-            <p className="mt-4 text-sm text-cyan">Sent. I will get back to you.</p>
-          )}
-          {status === "error" && (
-            <p className="mt-4 text-sm text-rose">
-              Could not send just now. Email me at {profile.email} instead.
-            </p>
-          )}
+          <div className="min-h-6" aria-live="polite">
+            {status === "sent" && (
+              <p className="mt-4 text-sm text-cyan">Sent. I will get back to you.</p>
+            )}
+            {status === "error" && (
+              <p className="mt-4 text-sm text-rose">
+                Could not send just now. Email me at {profile.email} instead.
+              </p>
+            )}
+          </div>
         </form>
       </div>
       <footer className="mx-auto mt-10 max-w-6xl pb-8 text-center font-mono text-[11px] uppercase tracking-[0.25em] text-white/30">
